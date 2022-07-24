@@ -31,13 +31,13 @@ namespace EmployeePayRollProblem
                     employee.Gender = reader.GetString(4);
                     employee.PhoneNumber = reader.GetInt64(5);
                     employee.Address = reader.GetString(6);
-                    employee.Department= reader.GetString(7);
+                    employee.Department = reader.GetString(7);
                     employee.BasicPay = reader.GetDouble(8);
                     employee.Deductions = reader.GetDouble(9);
                     employee.TaxablePay = reader.GetDouble(10);
                     employee.IncomeTax = reader.GetDouble(11);
                     employee.NetPay = reader.GetDouble(12);
-                   
+
                     employeePayroll.Add(employee);
                 }
                 reader.Close();
@@ -56,9 +56,9 @@ namespace EmployeePayRollProblem
                         "\nTaxable Pay :" + emp.TaxablePay +
                         "\nIncome Tax :" + emp.TaxablePay +
                         "\nNet Pay :" + emp.NetPay);
-                }      
-                
+                }
             }
+
             catch (Exception e)
             {
                 Console.WriteLine("Exception :" + e.Message);
