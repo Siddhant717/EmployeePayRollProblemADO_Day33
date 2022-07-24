@@ -11,7 +11,7 @@ namespace EmployeePayRollProblem
     {
         public void ReadDataFromDataBase()
         {
-            string SQL = "SELECT * FROM employee_payroll";
+            string SQL = "select * from employee_payroll";
             string connectingstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectingstring);
             SqlCommand cmd = new SqlCommand(SQL, connection);
@@ -55,9 +55,9 @@ namespace EmployeePayRollProblem
                         "\nDeductions :" + emp.Deductions +
                         "\nTaxable Pay :" + emp.TaxablePay +
                         "\nIncome Tax :" + emp.TaxablePay +
-                        "\nNet Pay :" + emp.NetPay); 
-                        
-                }
+                        "\nNet Pay :" + emp.NetPay);
+                }      
+                
             }
             catch (Exception e)
             {
