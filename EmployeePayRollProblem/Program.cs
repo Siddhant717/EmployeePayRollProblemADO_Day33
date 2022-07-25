@@ -7,7 +7,7 @@ namespace EmployeePayRollProblem
         static void Main(string[] args)
         {
             EmployeeRepo employee = new();
-            employee.UpdateBasePay();
+            employee.UpdateBasePay("Terissa");
 
         }
     }

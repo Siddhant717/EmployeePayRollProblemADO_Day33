@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeePayRollProblem
 {
-    internal class EmployeePayroll
+    public class EmployeePayroll
     {
         public int Id { get; set; }
         public string Name { get; set; }

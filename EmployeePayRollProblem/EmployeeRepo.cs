@@ -10,11 +10,20 @@ namespace EmployeePayRollProblem
     public class EmployeeRepo
     {
         //Updating the Salary for Terissa
-        public void UpdateBasePay()
+        public  void UpdateBasePay(string EmployeeName)
         {
-            var SQL = @$"update employee_payroll set BasicPay = 3000000, Deductions = 800000, TaxablePay= 100000, IncomeTax = 200000, NetPay = 2200000 where name = 'Terissa'";
-            String connectingstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connectingstring);
+            EmployeePayroll emp = new EmployeePayroll()
+            {
+                Name = EmployeeName,
+                BasicPay = 3000000,
+                Deductions = 50000,
+                TaxablePay = 500000,
+                IncomeTax = 15000,
+                NetPay = 2200000
+            };
+            var SQL = @$"update employee_payroll set BasicPay = '{emp.BasicPay}', Deductions = '{emp.Deductions}', TaxablePay= '{emp.TaxablePay}', IncomeTax = '{emp.IncomeTax}', NetPay = '{emp.NetPay}' where name = '{emp.Name}'";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
             SqlCommand cmd = new SqlCommand(SQL, connection);
             connection.Open();
             int reader = cmd.ExecuteNonQuery();
@@ -23,6 +32,7 @@ namespace EmployeePayRollProblem
             Console.ReadKey();
             connection.Close();
         }
+
     }
 }
 
