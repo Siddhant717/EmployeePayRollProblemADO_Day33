@@ -10,51 +10,146 @@ namespace EmployeePayRollProblem
     public class EmployeeRepo
     {
         //Retrieve all Employees joined in particular date range
-        public void GetEmployeesByDateRange()
+        //Retrieve Sum of Male Employee Salary
+        public void SUMofMaleEmployeeSalary()
         {
-            var SQL = @$"select * from employee_payroll where StartDate BETWEEN CAST('2021-01-01' AS DATE) AND GETDATE()";
+            var SQL = @$"select SUM(salary) from employee_payroll where Gender = 'M' GROUP BY Gender";
             string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectingString);
             SqlCommand cmd = new SqlCommand(SQL, connection);
             connection.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            List<EmployeePayroll> employeePayroll = new List<EmployeePayroll>();
-            while (reader.Read())
-            {
-                var employee = new EmployeePayroll();
-                employee.Id = reader.GetInt32(0);
-                employee.Name = reader.GetString(1);
-                employee.Salary = reader.GetInt32(2);
-                employee.StartDate = reader.GetDateTime(3);
-                employee.Gender = reader.GetString(4);
-                employee.PhoneNumber = reader.GetInt64(5);
-                employee.Address = reader.GetString(6);
-                employee.Department = reader.GetString(7);
-                employee.BasicPay = reader.GetDouble(8);
-                employee.Deductions = reader.GetDouble(9);
-                employee.TaxablePay = reader.GetDouble(10);
-                employee.IncomeTax = reader.GetDouble(11);
-                employee.NetPay = reader.GetDouble(12);
 
-                employeePayroll.Add(employee);
-            }
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Sum of Male Employee Salary is : " + reader); ;
+            Console.ReadKey();
             connection.Close();
-            foreach (var emp in employeePayroll)
-            {
-                Console.WriteLine("\nID :" + emp.Id +
-                    "\nName :" + emp.Name +
-                    "\nSalary :" + emp.Salary +
-                    "\nStart Date : " + emp.StartDate +
-                    "\nGender :" + emp.Gender +
-                    "\nPhoneNumber :" + emp.PhoneNumber +
-                    "\nAddress :" + emp.Address +
-                    "\nDepartment :" + emp.Department +
-                    "\nBasic Pay :" + emp.BasicPay +
-                    "\nDeductions :" + emp.Deductions +
-                    "\nTaxable Pay :" + emp.TaxablePay +
-                    "\nIncome Tax :" + emp.TaxablePay +
-                    "\nNet Pay :" + emp.NetPay);
-            }
+        }
+        //Retrieve Sum of Female Employee Salary
+        public void SUMofFemaleEmployeeSalary()
+        {
+            var SQL = @$"select SUM(salary) FROM employee_payroll where Gender = 'F' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Sum of Female Employee Salary is : " + reader);
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Average Salary of Male Employee
+        public void AVGofMaleEmployeeSalary()
+        {
+            var SQL = @$"select AVG(salary) FROM employee_payroll where Gender = 'M' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Average Salary of Male Employee is : " + reader); ;
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Average Salary of Female Employee
+        public void AVGofFemaleEmployeeSalary()
+        {
+            var SQL = @$"select AVG(salary) from employee_payroll where Gender = 'F' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Average Salary of Female Employee is : " + reader);
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Minimum Salary of Male Employee 
+        public void MINofMaleEmployeeSalary()
+        {
+            var SQL = @$"select MIN(salary) from employee_payroll where Gender = 'M' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Minimum Salary of Male Employee is : " + reader); ;
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Minimum Salary of Female Employee 
+        public  void MINofFemaleEmployeeSalary()
+        {
+            var SQL = @$"select MIN(salary) from employee_payroll where Gender = 'F' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Minimum Salary of Female Employee is : " + reader);
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Maximum Salary of Male Employee 
+        public void MAXofMaleEmployeeSalary()
+        {
+            var SQL = @$"select MAX(salary) from employee_payroll where Gender = 'M' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Maximum Salary of Male Employee is : " + reader); ;
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Maximum Salary of Female Employee 
+        public void MAXofFemaleEmployeeSalary()
+        {
+            var SQL = @$"select MAX(salary) from employee_payroll where Gender = 'F' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Maximum Salary of Female Employee is : " + reader);
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Number (Count) of Male Employee 
+        public void COUNTofMaleEmployee()
+        {
+            var SQL = @$"select COUNT(salary) from employee_payroll where Gender = 'M' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Number (Count) of Male Employee is : " + reader); ;
+            Console.ReadKey();
+            connection.Close();
+        }
+        //Retrieve Number (Count) of Female Employee 
+        public void COUNTofFemaleEmployee()
+        {
+            var SQL = @$"select COUNT(salary) FROM employee_payroll where Gender = 'F' GROUP BY Gender";
+            string connectingString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=payroll_service;Integrated Security=True
+";
+            SqlConnection connection = new SqlConnection(connectingString);
+            SqlCommand cmd = new SqlCommand(SQL, connection);
+            connection.Open();
+
+            int reader = (int)cmd.ExecuteScalar();
+            Console.WriteLine("Number (Count) of Female Employee : " + reader);
+            Console.ReadKey();
+            connection.Close();
         }
 
     }

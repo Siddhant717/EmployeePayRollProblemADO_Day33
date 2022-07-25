@@ -7,7 +7,16 @@ namespace EmployeePayRollProblem
         static void Main(string[] args)
         {
             EmployeeRepo employees = new();
-            employees.GetEmployeesByDateRange();
+            employees.SUMofMaleEmployeeSalary();
+            employees.SUMofFemaleEmployeeSalary();
+            employees.AVGofMaleEmployeeSalary();
+            employees.AVGofFemaleEmployeeSalary();
+            employees.COUNTofMaleEmployee();
+            employees.COUNTofFemaleEmployee();
+            employees.MINofMaleEmployeeSalary();
+            employees.MINofFemaleEmployeeSalary();
+            employees.MAXofMaleEmployeeSalary();
+            employees.MAXofFemaleEmployeeSalary();
         }
     }
 }
